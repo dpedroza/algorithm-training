@@ -26,6 +26,10 @@ object Solutions {
 
         }
 
-        return set.firstOrNull() ?: -1
+        return if (set.isEmpty() || set.size > 1) {
+            -1
+        } else {
+            set.first()
+        }
     }
 }

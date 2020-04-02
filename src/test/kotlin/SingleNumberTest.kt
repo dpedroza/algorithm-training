@@ -29,4 +29,13 @@ class SingleNumberTest {
 
         assertEquals(result, -1)
     }
+
+    @Test
+    fun moreThanOneSingleNumberShouldReturnInvalid() {
+        val input = arrayOf(0, 0, 2, 4)
+
+        val result = Solutions.singleNumber(input.toIntArray())
+
+        assertEquals(result, -1)
+    }
 }
