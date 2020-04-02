@@ -1,3 +1,4 @@
+
 /**
  * Solutions for the 30 day
  * #stayhome leetcode challenge
@@ -5,18 +6,20 @@
 object Solutions {
 
     /**
+     *
      * Challenge 1/30
-     * @param nums should not be empty and contain
+     *
+     * @param ints should not be empty and contain
      * at maximum one number that is not repeated
      * others must be
      */
-    fun singleNumber(nums: IntArray): Int {
+    fun singleNumber(ints: IntArray): Int {
 
-        if (nums.isEmpty()) return -1
+        if (ints.isEmpty()) return -1
 
         val set = HashSet<Int>()
 
-        for (i in nums) {
+        for (i in ints) {
 
             if (set.contains(i)) {
                 set.remove(i)
@@ -31,5 +34,30 @@ object Solutions {
         } else {
             set.first()
         }
+    }
+
+    /**
+     * Challenge 2/30
+     *
+     * @param value it digits square numbers are sum until
+     * @return true when the result of sum equals one
+     * @return false otherwise
+     */
+    fun isHappy(value: Int): Boolean {
+        // as kotlin function parameters are Val type.
+        var mainValue = value
+        if (mainValue == 1) {
+            return true
+        } else if (mainValue == 4) {
+            // because if value is 4
+            // it will become 16 and start again.
+            return false
+        }
+        var newValue = 0
+        while (mainValue > 0) {
+            newValue += (mainValue % 10) * (mainValue % 10)
+            mainValue /= 10
+        }
+        return isHappy(newValue)
     }
 }
