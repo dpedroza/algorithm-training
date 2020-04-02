@@ -1,41 +1,34 @@
-import org.junit.Assert.assertEquals
+import Solutions.singleNumber
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class SingleNumberTest {
+@RunWith(Parameterized::class)
+class SingleNumberTest(
+    private val input: IntArray,
+    private val expected: Int
+) {
 
-    @Test
-    fun shouldFindSingleNumber() {
-        val input = arrayOf(0, 0, 2, 2, 4)
-
-        val result = Solutions.singleNumber(input.toIntArray())
-
-        assertEquals(result, 4)
+    private companion object {
+        @JvmStatic
+        @Parameterized.Parameters(name = "test case: {index} ==> single number is {1}") // where -1 is invalid
+        fun parameters() = listOf(
+            arrayOf(
+                intArrayOf(0, 0, 2, 4, 4), 2 // one single number
+            ),
+            arrayOf(
+                intArrayOf(1, 1, 3, 3), -1 // none
+            ),
+            arrayOf(
+                intArrayOf(5, 5, 6, 7, 8, 8), -1 // multiple
+            )
+        )
     }
 
     @Test
-    fun notDuplicatesShouldReturnInvalid() {
-        val input = arrayOf(0, 0, 2, 2, 4, 4)
-
-        val result = Solutions.singleNumber(input.toIntArray())
-
-        assertEquals(result, -1)
-    }
-
-    @Test
-    fun emptyArrayShouldReturnInvalid() {
-        val input = arrayOf<Int>()
-
-        val result = Solutions.singleNumber(input.toIntArray())
-
-        assertEquals(result, -1)
-    }
-
-    @Test
-    fun moreThanOneSingleNumberShouldReturnInvalid() {
-        val input = arrayOf(0, 0, 2, 4)
-
-        val result = Solutions.singleNumber(input.toIntArray())
-
-        assertEquals(result, -1)
+    fun singleNumberAssertions() {
+        assertThat(singleNumber(input), equalTo(expected))
     }
 }

@@ -1,42 +1,36 @@
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import Solutions.isHappy
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class HappyNumberTest {
+@RunWith(Parameterized::class)
+class HappyNumberTest(
+    private val input: Int,
+    private val expected: Boolean
+) {
 
-    @Test
-    fun oneIsAHappyNumber() {
-        val input = 1
-
-        val result = Solutions.isHappy(input)
-
-        assertTrue(result)
+    private companion object {
+        @JvmStatic
+        @Parameterized.Parameters(
+            name = "test case: {index} ==> is {0} a happy number? {1}" // where -1 is invalid
+        )
+        fun parameters() = listOf(
+            arrayOf(
+                7, true
+            ),
+            arrayOf(
+                19, true
+            ),
+            arrayOf(
+                20, false
+            )
+        )
     }
 
     @Test
-    fun sevenIsAHappyNumber() {
-        val input = 7
-
-        val result = Solutions.isHappy(input)
-
-        assertTrue(result)
-    }
-
-    @Test
-    fun nineteenIsAHappyNumber() {
-        val input = 19
-
-        val result = Solutions.isHappy(input)
-
-        assertTrue(result)
-    }
-
-    @Test
-    fun twentyNotAHappyNumber() {
-        val input = 20
-
-        val result = Solutions.isHappy(input)
-
-        assertFalse(result)
+    fun happyNumberAssertions() {
+        assertThat(isHappy(input), equalTo(expected))
     }
 }
