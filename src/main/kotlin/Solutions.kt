@@ -81,8 +81,6 @@ object Solutions {
             }
         }
 
-        println(profit)
-
         return profit
     }
 }
