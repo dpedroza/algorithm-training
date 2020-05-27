@@ -1,4 +1,3 @@
-import Solutions.singleNumber
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -10,6 +9,8 @@ class SingleNumberTest(
     private val input: IntArray,
     private val expected: Int
 ) {
+
+    private val solution = SingleNumber()
 
     private companion object {
         @JvmStatic
@@ -29,6 +30,6 @@ class SingleNumberTest(
 
     @Test
     fun singleNumberAssertions() {
-        assertThat(singleNumber(input), equalTo(expected))
+        assertThat(solution.singleNumber(input), equalTo(expected))
     }
 }

@@ -1,4 +1,3 @@
-import Solutions.maxProfit
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -10,6 +9,8 @@ class MaxProfitTest(
     private val input: IntArray,
     private val expected: Int
 ) {
+
+    private val solution = MaxProfit()
 
     private companion object {
         @JvmStatic
@@ -29,6 +30,6 @@ class MaxProfitTest(
 
     @Test
     fun singleNumberAssertions() {
-        assertThat(maxProfit(input), equalTo(expected))
+        assertThat(solution.maxProfit(input), equalTo(expected))
     }
 }

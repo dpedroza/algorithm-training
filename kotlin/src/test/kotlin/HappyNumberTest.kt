@@ -1,4 +1,3 @@
-import Solutions.isHappy
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -10,6 +9,8 @@ class HappyNumberTest(
     private val input: Int,
     private val expected: Boolean
 ) {
+
+    private val solution = HappyNumber()
 
     private companion object {
         @JvmStatic
@@ -31,6 +32,6 @@ class HappyNumberTest(
 
     @Test
     fun happyNumberAssertions() {
-        assertThat(isHappy(input), equalTo(expected))
+        assertThat(solution.isHappy(input), equalTo(expected))
     }
 }
